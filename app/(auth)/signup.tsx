@@ -1,11 +1,11 @@
 import { Colors } from "@/constants/Colors";
-import { TeamsScreen } from "@/screens/tabs/TeamsScreen";
+import { SignUpScreen } from "@/screens/auth/SignUpScreen";
 import { View, StyleSheet } from "react-native";
 
-export default function TeamsRoute() {
+export default function SignUpRoute() {
   return (
     <View style={styles.container}>
-      <TeamsScreen />
+      <SignUpScreen />
     </View>
   );
 }
@@ -13,7 +13,7 @@ export default function TeamsRoute() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: 20,
     backgroundColor: Colors.main.primary,
-  }
+  },
 });

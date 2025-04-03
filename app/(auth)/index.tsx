@@ -1,11 +1,12 @@
-import { Colors } from "@/constants/Colors";
-import { TeamsScreen } from "@/screens/tabs/TeamsScreen";
 import { View, StyleSheet } from "react-native";
+import React from "react";
+import { WelcomeScreen } from "@/screens/wlecomescreen";
+import { Colors } from "@/constants/Colors";
 
-export default function TeamsRoute() {
+export default function IndexRoute() {
   return (
     <View style={styles.container}>
-      <TeamsScreen />
+      <WelcomeScreen />
     </View>
   );
 }
@@ -13,7 +14,7 @@ export default function TeamsRoute() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: 20,
     backgroundColor: Colors.main.primary,
-  }
+  },
 });

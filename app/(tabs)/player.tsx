@@ -1,11 +1,11 @@
 import { Colors } from "@/constants/Colors";
-import { TeamsScreen } from "@/screens/tabs/TeamsScreen";
+import { PlayersScreen } from "@/screens/tabs/PlayersScreen/PlayersScreen";
 import { View, StyleSheet } from "react-native";
 
-export default function TeamsRoute() {
+export default function PlayerRoute() {
   return (
     <View style={styles.container}>
-      <TeamsScreen />
+      <PlayersScreen />
     </View>
   );
 }
@@ -15,5 +15,5 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor: Colors.main.primary,
-  }
+  },
 });
