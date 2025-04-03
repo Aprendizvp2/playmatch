@@ -34,4 +34,8 @@ export const Colors = {
     primary: "#FFFFFF",
     secondary: "#14B236",
   },
+  icon: {
+    tabIconDefault: "#9BA1A6",
+    tabIconSelected: "#1E3A24",
+  },
 };

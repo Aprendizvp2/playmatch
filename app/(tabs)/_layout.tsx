@@ -4,8 +4,9 @@ import { Platform } from "react-native";
 import {
   FontAwesome5,
   MaterialCommunityIcons,
-  FontAwesome6,
+  Ionicons,
 } from "@expo/vector-icons";
+import { Colors } from "@/constants/Colors";
 
 export default function TabLayout() {
   return (
@@ -23,40 +24,58 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Teams",
+          title: "Equipos",
           tabBarIcon: ({ focused }) => (
-            <FontAwesome6
-              name={focused ? "shield" : "shield-halved"}
+            <Ionicons
+              name={focused ? "shield-sharp" : "shield-outline"}
               size={24}
-              color={focused ? "green" : "gray"}
+              color={
+                focused
+                  ? Colors.icon.tabIconSelected
+                  : Colors.icon.tabIconDefault
+              }
             />
           ),
+          tabBarActiveTintColor: Colors.icon.tabIconSelected,
+          tabBarInactiveTintColor: Colors.icon.tabIconDefault,
         }}
       />
       <Tabs.Screen
         name="player"
         options={{
-          title: "Players",
+          title: "Jugadores",
           tabBarIcon: ({ focused }) => (
             <FontAwesome5
               name={focused ? "user-alt" : "user"}
               size={24}
-              color={focused ? "green" : "gray"}
+              color={
+                focused
+                  ? Colors.icon.tabIconSelected
+                  : Colors.icon.tabIconDefault
+              }
             />
           ),
+          tabBarActiveTintColor: Colors.icon.tabIconSelected,
+          tabBarInactiveTintColor: Colors.icon.tabIconDefault,
         }}
       />
       <Tabs.Screen
         name="field"
         options={{
-          title: "Field",
+          title: "Canchas",
           tabBarIcon: ({ focused }) => (
             <MaterialCommunityIcons
               name={focused ? "soccer-field" : "soccer-field"}
               size={28}
-              color={focused ? "green" : "gray"}
+              color={
+                focused
+                  ? Colors.icon.tabIconSelected
+                  : Colors.icon.tabIconDefault
+              }
             />
           ),
+          tabBarActiveTintColor: Colors.icon.tabIconSelected,
+          tabBarInactiveTintColor: Colors.icon.tabIconDefault,
         }}
       />
     </Tabs>
