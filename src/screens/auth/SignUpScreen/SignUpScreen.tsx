@@ -1,19 +1,23 @@
-import React from "react";
 import {
   View,
-  Text,
   TextInput,
-  StyleSheet,
+  Text,
   TouchableOpacity,
+  StyleSheet,
 } from "react-native";
-import { Controller } from "react-hook-form";
 import { useViewModel } from "./useViewModel";
-import { Link } from "expo-router";
 import { Colors } from "@/src/constants/Colors";
+import { Link } from "expo-router";
+import { Controller } from "react-hook-form";
+
+export type SignUpFormData = {
+  name: string;
+  email: string;
+  password: string;
+};
 
 export const SignUpScreen = () => {
   const { control, errors, isValid, handleSubmit, onSubmit } = useViewModel();
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Registro</Text>
@@ -61,7 +65,9 @@ export const SignUpScreen = () => {
           />
         )}
       />
-      {errors.password && <Text style={styles.error}>{errors.password.message}</Text>}
+      {errors.password && (
+        <Text style={styles.error}>{errors.password.message}</Text>
+      )}
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={handleSubmit(onSubmit)}
