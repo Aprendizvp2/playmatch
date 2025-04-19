@@ -1,18 +1,11 @@
-import React from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
-import { Controller } from "react-hook-form";
-import { useViewModel } from "./useViewModel";
+import { View, TextInput, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Link } from "expo-router";
 import { Colors } from "@/src/constants/Colors";
+import { Controller } from "react-hook-form";
+import { useViewModel } from "./useViewModel";
 
 export const SignInScreen = () => {
-  const { control, errors, isValid, handleSubmit, onSubmit } = useViewModel();
+  const { control, errors, onSubmit, handleSubmit, isValid } = useViewModel();
 
   return (
     <View style={styles.container}>
@@ -70,6 +63,7 @@ export const SignInScreen = () => {
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {

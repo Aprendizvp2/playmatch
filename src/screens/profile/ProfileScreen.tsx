@@ -15,12 +15,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "@/src/constants/Colors";
 import { router } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useAuth } from "@/src/context/AuthContext";
+import { useGetProfileQuery } from "@/src/api/authApi";
 
 export const ProfileScreen = () => {
-  const { user } = useAuth(); // 👈 ahora toma el usuario global
+  const { data } = useGetProfileQuery({});
 
-  if (!user) {
+  if (!data) {
     return (
       <SafeAreaView style={styles.safeArea}>
         <ActivityIndicator size="large" color={Colors.main.white} />
@@ -53,14 +53,14 @@ export const ProfileScreen = () => {
             <TextInput
               style={styles.input}
               placeholder="Nombre"
-              value={user?.name || ""}
+              value={data?.name || ""}
               editable={false}
               placeholderTextColor={Colors.main.black}
             />
             <TextInput
               style={styles.input}
               placeholder="Correo"
-              value={user?.email || ""}
+              value={data?.email || ""}
               editable={false}
               placeholderTextColor={Colors.main.black}
             />
