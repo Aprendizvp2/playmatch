@@ -1,24 +1,23 @@
-import React from "react";
 import {
-  Text,
   StyleSheet,
-  View,
   TouchableOpacity,
-  TextInput,
   SafeAreaView,
   KeyboardAvoidingView,
   Platform,
   Image,
   ActivityIndicator,
 } from "react-native";
+import { Text, View } from "react-native-ui-lib";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "@/src/constants/Colors";
 import { router } from "expo-router";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useGetProfileQuery } from "@/src/api/authApi";
+import { useAuthActions } from "@/src/hooks/useActions";
+import { CustomButton, CustomTextInput } from "@/src/components";
 
 export const ProfileScreen = () => {
   const { data } = useGetProfileQuery({});
+  const { signOut } = useAuthActions();
 
   if (!data) {
     return (
@@ -39,7 +38,9 @@ export const ProfileScreen = () => {
             <TouchableOpacity onPress={() => router.back()} style={styles.side}>
               <Ionicons name="arrow-back" size={24} color="white" />
             </TouchableOpacity>
-            <Text style={styles.title}>Perfíl</Text>
+            <Text color={Colors.main.white} text60>
+              Perfíl
+            </Text>
             <View style={styles.side} />
           </View>
           <View style={styles.formContainer}>
@@ -50,22 +51,19 @@ export const ProfileScreen = () => {
               style={styles.img}
               resizeMode="cover"
             />
-            <TextInput
-              style={styles.input}
+            <CustomTextInput
               placeholder="Nombre"
               value={data?.name || ""}
               editable={false}
               placeholderTextColor={Colors.main.black}
             />
-            <TextInput
-              style={styles.input}
+            <CustomTextInput
               placeholder="Correo"
               value={data?.email || ""}
               editable={false}
               placeholderTextColor={Colors.main.black}
             />
-            <TextInput
-              style={styles.input}
+            <CustomTextInput
               placeholder="Contraseña"
               value="********"
               editable={false}
@@ -73,19 +71,18 @@ export const ProfileScreen = () => {
               placeholderTextColor={Colors.main.black}
             />
           </View>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Actualizar</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.buttonLogOut}
-              onPress={async () => {
-                await AsyncStorage.removeItem("access_token");
-                router.push("/signin");
-              }}
-            >
-              <Text style={styles.buttonLogOutText}>Cerrar sesión</Text>
-            </TouchableOpacity>
+          <View gap-12>
+            <CustomButton
+              title="Actualizar"
+              backgroundColor={Colors.main.white}
+              textColor={Colors.main.black}
+            />
+            <CustomButton
+              title="Cerrar sesión"
+              backgroundColor={Colors.actions.error}
+              textColor={Colors.main.white}
+              onPress={signOut}
+            />
           </View>
         </View>
       </KeyboardAvoidingView>
@@ -116,11 +113,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "center",
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: Colors.main.white,
-  },
   formContainer: {
     flex: 1,
     justifyContent: "center",
@@ -131,43 +123,5 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 300,
-  },
-  input: {
-    borderRadius: 12,
-    padding: 16,
-    width: "100%",
-    backgroundColor: Colors.main.white,
-    color: Colors.main.primary,
-  },
-  buttonContainer: {
-    gap: 12,
-  },
-  button: {
-    borderRadius: 100,
-    padding: 16,
-    width: "100%",
-    backgroundColor: Colors.main.white,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonText: {
-    color: Colors.main.black,
-    textAlign: "center",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  buttonLogOut: {
-    borderRadius: 100,
-    padding: 16,
-    width: "100%",
-    backgroundColor: Colors.actions.error,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonLogOutText: {
-    color: Colors.main.white,
-    textAlign: "center",
-    fontSize: 16,
-    fontWeight: "bold",
   },
 });

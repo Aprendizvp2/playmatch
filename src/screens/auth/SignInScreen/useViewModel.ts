@@ -18,7 +18,14 @@ export const useViewModel = () => {
     control,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm({ resolver: yupResolver(signinSchema) });
+  } = useForm({
+    resolver: yupResolver(signinSchema),
+    mode: "onChange",
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
   const onSubmit = async (data: SignInFormData) => {
     try {

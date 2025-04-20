@@ -1,0 +1,1 @@
+export { CustomCardTeam } from "./CustomCardTeam";

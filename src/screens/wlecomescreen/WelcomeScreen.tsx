@@ -1,82 +1,41 @@
-import { StyleSheet, View, Image, TouchableOpacity, Text } from "react-native";
-import React from "react";
+import { StyleSheet, Image } from "react-native";
+import { View } from "react-native-ui-lib";
 import { router } from "expo-router";
 import { Colors } from "@/src/constants/Colors";
+import { CustomButton } from "@/src/components";
 
 export const WelcomeScreen = () => {
   return (
-    <View style={styles.container}>
+    <View flex-1 center backgroundColor={Colors.main.primary} gap-16>
       <Image
         source={require("../../assets/images/welcome-player.png")}
-        style={styles.background}
+        style={styles.image}
         resizeMode="cover"
       />
-      <TouchableOpacity
-        style={styles.buttonSignIn}
+      <CustomButton
+        title="Iniciar sesión"
         onPress={() => {
           router.push("/(auth)/signin");
         }}
-      >
-        <Text style={styles.buttonTextSignIn}>Iniciar Sesión</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.buttonSignUp}
+        backgroundColor={Colors.buttons.primary}
+        textColor={Colors.main.black}
+      />
+      <CustomButton
+        title="Registrarse"
         onPress={() => {
-          router.push("/(auth)/signin");
+          router.push("/(auth)/signup");
         }}
-      >
-        <Text style={styles.buttonTextSignUp}>Registrarse</Text>
-      </TouchableOpacity>
+        backgroundColor={Colors.buttons.secondary}
+        textColor={Colors.main.white}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    gap: 20,
-  },
-  background: {
+  image: {
     width: 280,
     height: 280,
     marginVertical: 20,
-  },
-  button: {
-    borderRadius: 100,
-    padding: 16,
-    width: "100%",
-    backgroundColor: "#06a3e2",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonSignIn: {
-    backgroundColor: "#fff",
-    padding: 16,
-    width: "100%",
-    borderRadius: 100,
-  },
-  buttonTextSignIn: {
-    color: Colors.main.black,
-    textAlign: "center",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  buttonSignUp: {
-    backgroundColor: Colors.buttons.secondary,
-    padding: 16,
-    width: "100%",
-    textAlign: "center",
-    fontSize: 16,
-    fontWeight: "bold",
-    borderRadius: 100,
-  },
-  buttonTextSignUp: {
-    color: "#fff",
-    textAlign: "center",
-    fontSize: 16,
-    fontWeight: "bold",
   },
 });

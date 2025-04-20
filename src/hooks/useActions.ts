@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { logout, setCredentials } from '../store/authSlice';
+import { router } from 'expo-router';
 
 export const useAuthActions = () => {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ export const useAuthActions = () => {
 
   const signOut = () => {
     dispatch(logout());
+    router.push('/(auth)/signin');
   };
 
   return { login, signOut };
